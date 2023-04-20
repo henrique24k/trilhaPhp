@@ -1,32 +1,6 @@
 <?php
 
-function sacar(array $conta,float $valorSaque): array //uma funcão so conhece variaveis criads dentro dela //devolver array   
-{
-    if ($valorSaque > $conta['saldo']) {
-        exibeMensagem(mensagem:"Você não pode sacar esse valor");
-    } else {
-        $conta['saldo'] -= $valorSaque;
-    }
-
-    return $conta;
-}
-
-function depositar($conta, float $valorDeposito)
-{
-    if ($valorDeposito > 0) { //se for maior que zero eu faço o deposito.
-        $conta['saldo'] += $valorDeposito;
-    } else {
-        exibeMensagem (mensagem:"Depositos precisam sem positivos");
-    }
-
-
-    return $conta;
-}
-
-function exibeMensagem($mensagem) : void //não retorna nada
-{ //subrotina não retornam valor funções sim
-    echo $mensagem;
-}
+require 'funcoes.php';
 
 $contaCorrente = [
     1234 => [
@@ -61,6 +35,20 @@ $contaCorrente['1234'] = depositar(
     valorDeposito: 125
 );
 
-foreach ($contaCorrente as $cpf => $conta) { //indice do array $cpf e o valor é a $conta
-    echo $cpf . " " . $conta['titular'] . ' ' . $conta['saldo'] . PHP_EOL;
+// foreach ($contaCorrente as $cpf => $conta) { //indice do array $cpf e o valor é a $conta
+//     exibeMensagem(
+//         mensagem:$cpf . " " . $conta['titular'] . ' ' . $conta['saldo'] . PHP_EOL
+//     );
+// }
+
+// foreach ($contaCorrente as $cpf => $conta) {  //SIMPLES
+//     exibeMensagem(
+//         mensagem:"$cpf $conta[titular] $conta[saldo]"
+//     );
+// }
+
+foreach ($contaCorrente as $cpf => $conta) {  //COMPLEXO interpolação
+    exibeMensagem(
+        mensagem:"$cpf {$conta['titular']} {$conta['saldo']}"
+    );
 }
