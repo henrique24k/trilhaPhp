@@ -21,12 +21,12 @@ $contaCorrente = [
 //fazendo o saque
 $contaCorrente['1234'] = sacar(
     $contaCorrente[1234],
-    valorSaque: 500
+    valorSaque: 111
 );
 
 $contaCorrente['5678'] = sacar(
     $contaCorrente[5678],
-    valorSaque: 500
+    valorSaque: 22
 );
 
 //fazendo deposito
@@ -35,26 +35,33 @@ $contaCorrente['1234'] = depositar(
     valorDeposito: 125
 );
 
-// foreach ($contaCorrente as $cpf => $conta) { //indice do array $cpf e o valor é a $conta
-//     exibeMensagem(
-//         mensagem:$cpf . " " . $conta['titular'] . ' ' . $conta['saldo'] . PHP_EOL
-//     );
-// }
-
-// foreach ($contaCorrente as $cpf => $conta) {  //SIMPLES
-//     exibeMensagem(
-//         mensagem:"$cpf $conta[titular] $conta[saldo]"
-//     );
-// }
-
 titularComLetrasMaisculas($contaCorrente['1234']);
 
 unset($contaCorrente['9123']); //apaga um dado da variavel da memoria
 
-foreach ($contaCorrente as $cpf => $conta) {  //COMPLEXO interpolação
-    ['titular' => $titular, 'saldo' => $saldo] = $conta; //list de uma forma mais eficiente
-    exibeMensagem(
-        mensagem:"$cpf {$conta['titular']} {$conta['saldo']}"
-    );
-}
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Conta corrente</h1>
+
+    <dl>
+        <?php foreach($contaCorrente as $cpf => $conta) {?>
+        <dt>
+            <h3><?= $conta['titular']; ?> - <?= $cpf; ?></h3>
+        </dt>
+        <dd>
+            Saldo: <?= $conta['saldo']; ?>
+        </dd>
+        <?php } ?>
+    </dl>
+</body>
+</html>
 
